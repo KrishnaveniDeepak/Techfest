@@ -1,0 +1,40 @@
+### 1. GET All Events
+GET http://localhost:5000/api/events
+
+###
+
+### 2. GET Single Event
+GET http://localhost:5000/api/events/6ab9fffc86b9ee0604383a83
+
+###
+
+### 3. POST Create New Event
+POST http://localhost:5000/api/events
+Content-Type: application/json
+
+{
+  "name": "AI Workshop",
+  "category": "Technical",
+  "fee": 150,
+  "seats": 40,
+  "date": "2026-11-20"
+}
+
+###
+
+### 4. PUT Update Event
+PUT http://localhost:5000/api/events/6ab9fffc86b9ee0604383a83
+Content-Type: application/json
+
+{
+  "name": "Robo Wars 2026",
+  "category": "Robotics",
+  "fee": 250,
+  "seats": 25,
+  "date": "2026-10-16"
+}
+
+###
+
+### 5. DELETE Event (Remove duplicate)
+DELETE http://localhost:5000/api/events/6ab9fffe86b9ee0604383a84
