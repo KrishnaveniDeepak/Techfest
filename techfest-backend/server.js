@@ -5,8 +5,17 @@ require('dotenv').config();
 
 const app = express();
 
-// 1. Enable CORS for all incoming requests
-app.use(cors());
+// 1. Explicit CORS Configuration for Netlify and local development
+app.use(cors({
+  origin: [
+    'https://techfest-1.netlify.app',
+    'http://localhost:5173',
+    'http://localhost:3000'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // 2. Body Parser Middleware
 app.use(express.json());
