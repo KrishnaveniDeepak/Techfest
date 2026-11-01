@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 // API Base URL configuration using Netlify environment variable with Render fallback
-const API_URL = import.meta.env.VITE_API_URL || "https://techfest-6178.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL || "https://techfest-6l78.onrender.com";
 
 export default function RegisterEvent() {
   const [events, setEvents] = useState([]);
