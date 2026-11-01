@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+// API Base URL configuration using Netlify environment variable with Render fallback
+const API_URL = import.meta.env.VITE_API_URL || "https://techfest-6178.onrender.com";
+
 export default function RegisterEvent() {
   const [events, setEvents] = useState([]);
   const [formData, setFormData] = useState({
@@ -29,7 +32,7 @@ export default function RegisterEvent() {
 
   const fetchData = async () => {
     try {
-      const resEvents = await fetch("http://localhost:5000/api/events");
+      const resEvents = await fetch(`${API_URL}/api/events`);
       const eventsData = await resEvents.json();
       setEvents(eventsData);
 
@@ -44,7 +47,7 @@ export default function RegisterEvent() {
       }
 
       if (token) {
-        const resReg = await fetch("http://localhost:5000/api/registrations", {
+        const resReg = await fetch(`${API_URL}/api/registrations`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const regData = await resReg.json();
@@ -64,7 +67,7 @@ export default function RegisterEvent() {
     if (!token) return setMessage("Please log in first!");
 
     try {
-      const res = await fetch("http://localhost:5000/api/registrations", {
+      const res = await fetch(`${API_URL}/api/registrations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -94,7 +97,7 @@ export default function RegisterEvent() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this registration?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/registrations/${id}`, {
+      const res = await fetch(`${API_URL}/api/registrations/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -122,7 +125,7 @@ export default function RegisterEvent() {
 
   const handleUpdate = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/registrations/${id}`, {
+      const res = await fetch(`${API_URL}/api/registrations/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
